@@ -36,7 +36,9 @@
       }
     </style>
   </head>
-  <body class="text-slate-300 antialiased py-6 px-4 sm:px-6 lg:px-8 xl:py-20">
+  <body
+    class="text-slate-300 antialiased pt-6 pb-24 px-4 sm:px-6 lg:py-12 lg:px-8 xl:py-20"
+  >
     <div
       id="resumeModal"
       class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md items-center justify-center p-4"
@@ -98,9 +100,9 @@
     <div
       class="max-w-6xl mx-auto flex flex-col lg:flex-row gap-6 relative items-start"
     >
-      <!-- OPTIMIZED COLLAPSIBLE MOBILE SIDEBAR -->
+      <!-- OPTIMIZED COLLAPSIBLE SIDEBAR -->
       <aside
-        class="w-full lg:w-72 bg-[#1e1e1f] border border-[#38383a] rounded-3xl p-5 sm:p-6 lg:p-8 flex flex-col lg:items-center lg:sticky lg:top-12 text-center lg:text-center z-20 relative"
+        class="w-full lg:w-72 bg-[#1e1e1f] border border-[#38383a] rounded-3xl p-5 sm:p-6 lg:p-8 flex flex-col lg:items-center lg:sticky lg:top-12 text-center z-20 relative"
       >
         <!-- MOBILE HEADER ROW LAYOUT -->
         <div
@@ -143,7 +145,7 @@
           ></i>
         </button>
 
-        <!-- WRAPPER FOR COLLAPSIBLE CONTENT (Hidden natively on mobile, flex on desktop) -->
+        <!-- WRAPPER FOR COLLAPSIBLE CONTENT -->
         <div
           id="collapsibleContactWrapper"
           class="hidden lg:flex flex-col items-center w-full mt-5 lg:mt-0"
@@ -243,41 +245,42 @@
       <main
         class="w-full lg:flex-1 bg-[#1e1e1f] border border-[#38383a] rounded-3xl p-6 sm:p-8 lg:p-10 relative min-h-[70vh]"
       >
+        <!-- MOBILE-RESPONSIVE APPlIKE NAVIGATION CONTROLLER COMPONENT -->
         <header
-          class="flex justify-center md:justify-end mb-8 md:absolute md:top-0 md:right-0 z-30"
+          class="fixed bottom-0 left-0 right-0 z-40 bg-[#2b2b2c]/95 backdrop-blur-md border-t border-[#38383a] px-4 py-3 flex justify-around md:justify-end lg:absolute lg:bottom-auto lg:top-0 lg:right-0 lg:left-auto lg:z-30 lg:bg-[#2b2b2c]/80 lg:border-t-0 lg:border-b lg:border-l lg:rounded-tr-3xl lg:rounded-bl-3xl lg:px-6 lg:py-4 lg:space-x-8 text-xs font-medium font-mono"
         >
-          <div
-            class="flex bg-[#2b2b2c]/80 backdrop-blur-md border-b border-l border-[#38383a] rounded-t-3xl rounded-b-3xl md:rounded-tr-3xl md:rounded-tl-none md:rounded-bl-3xl md:rounded-br-none px-6 py-4 space-x-6 sm:space-x-8 text-xs font-medium font-mono"
+          <button
+            onclick="switchTab('about')"
+            id="tabBtn-about"
+            class="text-[#ffdb6e] transition-colors nav-tab-btn flex flex-col lg:flex-row items-center gap-1 uppercase tracking-wider text-[10px] sm:text-xs"
           >
-            <button
-              onclick="switchTab('about')"
-              id="tabBtn-about"
-              class="text-[#ffdb6e] transition-colors nav-tab-btn"
-            >
-              ABOUT
-            </button>
-            <button
-              onclick="switchTab('resume')"
-              id="tabBtn-resume"
-              class="text-neutral-400 hover:text-slate-200 transition-colors nav-tab-btn"
-            >
-              RESUME
-            </button>
-            <button
-              onclick="switchTab('projects')"
-              id="tabBtn-projects"
-              class="text-neutral-400 hover:text-slate-200 transition-colors nav-tab-btn"
-            >
-              PROJECTS
-            </button>
-            <button
-              onclick="switchTab('contact')"
-              id="tabBtn-contact"
-              class="text-neutral-400 hover:text-slate-200 transition-colors nav-tab-btn"
-            >
-              CONTACT
-            </button>
-          </div>
+            <i class="fa-solid fa-user text-sm lg:hidden"></i>
+            <span>ABOUT</span>
+          </button>
+          <button
+            onclick="switchTab('resume')"
+            id="tabBtn-resume"
+            class="text-neutral-400 hover:text-slate-200 transition-colors nav-tab-btn flex flex-col lg:flex-row items-center gap-1 uppercase tracking-wider text-[10px] sm:text-xs"
+          >
+            <i class="fa-solid fa-file-lines text-sm lg:hidden"></i>
+            <span>RESUME</span>
+          </button>
+          <button
+            onclick="switchTab('projects')"
+            id="tabBtn-projects"
+            class="text-neutral-400 hover:text-slate-200 transition-colors nav-tab-btn flex flex-col lg:flex-row items-center gap-1 uppercase tracking-wider text-[10px] sm:text-xs"
+          >
+            <i class="fa-solid fa-briefcase text-sm lg:hidden"></i>
+            <span>PROJECTS</span>
+          </button>
+          <button
+            onclick="switchTab('contact')"
+            id="tabBtn-contact"
+            class="text-neutral-400 hover:text-slate-200 transition-colors nav-tab-btn flex flex-col lg:flex-row items-center gap-1 uppercase tracking-wider text-[10px] sm:text-xs"
+          >
+            <i class="fa-solid fa-envelope text-sm lg:hidden"></i>
+            <span>CONTACT</span>
+          </button>
         </header>
 
         <div id="content-about" class="tab-content space-y-8">
@@ -894,7 +897,7 @@
     </div>
 
     <footer
-      class="max-w-6xl mx-auto mt-8 text-center text-[10px] font-mono text-neutral-600 tracking-widest uppercase"
+      class="max-w-6xl mx-auto mt-8 text-center text-[10px] font-mono text-neutral-600 tracking-widest uppercase mb-16 lg:mb-0"
     >
       <p>&copy; 2026 WORKSPACE_DAWIT_JIRU // PIPELINE DATA CAPTURED SECURELY</p>
     </footer>
@@ -933,18 +936,6 @@
         }
       }
 
-      // Top reading scroll monitor
-      window.addEventListener("scroll", () => {
-        const tracker = document.getElementById("scrollTracker");
-        const winScroll =
-          document.body.scrollTop || document.documentElement.scrollTop;
-        const height =
-          document.documentElement.scrollHeight -
-          document.documentElement.clientHeight;
-        const percentage = (winScroll / height) * 100;
-        tracker.style.width = percentage + "%";
-      });
-
       // Tab routing state execution engine matching vcard logic layout
       function switchTab(targetTabId) {
         // Hide all tab screens
@@ -968,7 +959,7 @@
         activeBtn.classList.remove("text-neutral-400", "hover:text-slate-200");
         activeBtn.classList.add("text-[#ffdb6e]");
 
-        // Auto scroll container element index target viewport frame on layout modifications
+        // Auto scroll container element index target viewport frame on layout modifications safely
         window.scrollTo({ top: 0, behavior: "smooth" });
       }
 
