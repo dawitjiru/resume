@@ -900,12 +900,12 @@
                 class="hidden mt-4 p-4 bg-[#121213] border border-emerald-800/60 rounded-xl text-neutral-400 text-[11px] font-mono"
               >
                 <span class="text-emerald-400 font-bold"
-                  ><i class="fa-solid fa-circle-check mr-2"></i>ROUTING STRIP
-                  INITIALIZED</span
+                  ><i class="fa-solid fa-circle-check mr-2"></i>DATA ROUTING
+                  COMPLETE</span
                 >
                 <p class="text-[10px] text-neutral-500 mt-1">
-                  Direct system email application prompt has been automatically
-                  triggered.
+                  Message securely transmitted through background system
+                  interfaces successfully.
                 </p>
               </div>
             </div>
@@ -981,8 +981,8 @@
         window.scrollTo({ top: 0, behavior: "smooth" });
       }
 
-      // Direct automated client mail links loop integration execution loop
-      function executeDataSubmit(event) {
+      // Direct automated background email network dispatch route
+      async function executeDataSubmit(event) {
         event.preventDefault();
 
         const name = document.getElementById("clientName").value;
@@ -990,25 +990,53 @@
         const subjectInput = document.getElementById("clientSubject").value;
         const message = document.getElementById("clientMessage").value;
 
-        const targetAddress = "dawit.jiru@gmail.com";
-        const calculatedSubject = subjectInput
-          ? subjectInput
-          : "General Website Inquiry Contact";
-        const mailSubject = encodeURIComponent(
-          `Website Contact: ${calculatedSubject}`,
-        );
-        const mailBody = encodeURIComponent(
-          `Sender Name: ${name}\nReply Address: ${email}\n\nMessage Body:\n${message}`,
-        );
+        // Visual loading parameters update loop
+        const submitBtn = event.target.querySelector("button[type='submit']");
+        const originalBtnHTML = submitBtn.innerHTML;
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = `<i class="fa-solid fa-spinner animate-spin text-[10px]"></i> Transmitting Data...`;
 
-        // Instantly trigger direct application opening protocol without lag parameters
-        window.location.href = `mailto:${targetAddress}?subject=${mailSubject}&body=${mailBody}`;
+        // PASTE YOUR WEB3FORMS KEY INSIDE THIS ACCESS VARIABLE STRIP:
+        const ACCESS_KEY = "4f50e11f-1aa2-424b-a82d-502dc379b3c5";
 
-        // Silently apply display status to form container
-        document
-          .getElementById("portfolioTelemetryForm")
-          .classList.add("opacity-20", "pointer-events-none");
-        document.getElementById("telemetrySuccess").classList.remove("hidden");
+        try {
+          const response = await fetch("https://api.web3forms.com/submit", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+            },
+            body: JSON.stringify({
+              access_key: ACCESS_KEY,
+              name: name,
+              email: email,
+              subject: `Portfolio Contact: ${subjectInput || "General Inquiry"}`,
+              message: message,
+            }),
+          });
+
+          if (response.ok) {
+            // Apply background completion display visibility state changes
+            document
+              .getElementById("portfolioTelemetryForm")
+              .classList.add("opacity-20", "pointer-events-none");
+            document
+              .getElementById("telemetrySuccess")
+              .classList.remove("hidden");
+          } else {
+            alert(
+              "Background routing failure. Check access token assignment settings.",
+            );
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalBtnHTML;
+          }
+        } catch (error) {
+          alert(
+            "Network connection error occurred during API transit request loop.",
+          );
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalBtnHTML;
+        }
       }
     </script>
   </body>
